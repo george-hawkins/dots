@@ -1,0 +1,3 @@
+# .profile is only read if this is a login shell and .bashrc is only
+# automatically read if this is not a login shell, so...
+. $HOME/.bashrc

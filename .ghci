@@ -1,0 +1,3 @@
+-- Enable multi-line support - a modern alternative to `:{` and `:}`.
+:set +m
+

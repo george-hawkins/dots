@@ -1,0 +1,13 @@
+source ~/.dots/.bashrc
+
+# ----------------------------------------------------------------------
+# System specific entries should be added here.
+# ----------------------------------------------------------------------
+
+# Set to `light` if using a light background terminal and `dark` otherwise.
+# Picked up by .vimrc.
+export VIM_TERMINAL_BG=dark
+
+# ----------------------------------------------------------------------
+# Lines below this point were added by tools like sdkman etc.
+# ----------------------------------------------------------------------

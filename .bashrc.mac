@@ -1,0 +1,19 @@
+# Silence Mac warning that zsh is now the default shell.
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Setup programmable completion.
+# First do `brew install bash-completion`.
+source /usr/local/etc/profile.d/bash_completion.sh
+
+# Include non-g prefixed forms of brew installed commands, like grep, in PATH.
+GNUBINS="grep coreutils gnu-sed"
+for gnubin in $GNUBINS
+do
+    PATH="/usr/local/opt/$gnubin/libexec/gnubin:$PATH"
+done
+
+# Replace the section/degree key with tilde/backtick.
+# https://apple.stackexchange.com/a/353941
+# Note: the $'...' is a bash string literal - see https://unix.stackexchange.com/a/30904
+alias tidle-switch=$'hidutil property --set \'{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064}]}\''
+

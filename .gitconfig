@@ -1,0 +1,18 @@
+[user]
+    name = George Hawkins
+    email = george-hawkins@users.noreply.github.com
+[merge]
+    tool = vimdiff
+[push]
+    default = simple
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[alias]
+    vimdiff = difftool
+[merge]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    keepBackup = false
+    trustExitCode = false

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+mkdir bak
+
+function mv_to_bak {
+    name=$1
+    [ -e $HOME/$name ] && mv $HOME/$name bak
+}
+
+mv_to_bak .bash_profile
+
+mv_to_bak .bashrc
+cp .bashrc.template $HOME/.bashrc
+
+function replace {
+    name=$1
+    mv_to_bak $name
+    ln -s $PWD/$name $HOME/$name
+}
+
+replace .bashrc_prompt
+replace .bcrc
+replace .ghci
+replace .gitconfig
+replace .ideavimrc
+replace .profile
+replace .vim
+replace .vimrc
+
+[ -h $HOME/.bashrc.ostype ] && rm $HOME/.bashrc.ostype
+case "$OSTYPE" in
+    darwin*)  ln -s $PWD/.bashrc.mac $HOME/.bashrc.ostype ;;
+    linux*)   ln -s $PWD/.bashrc.linux $HOME/.bashrc.ostype ;;
+    *)        echo "Error: unexpected OSTYPE \"$OSTYPE\"" ;;
+esac

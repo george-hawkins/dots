@@ -1,0 +1,25 @@
+if [[ -n $SSH_CLIENT || -n $SSH_TTY ]]
+then
+    PS1_HOST='\h'
+else
+    PS1_HOST=localhost
+fi
+
+# Usually people use raw escape sequences for colors but you can lookup these sequences with tput.
+BOLD=$(tput bold)
+GREEN=$(tput setaf 2)
+BLUE=$(tput setaf 4)
+RESET="$(tput sgr0)"
+
+# '\[...\]' - tell Bash that a sequence is non-printing (so it can calculate length correctly).
+# Note: if you get the brace matching wrong with '\[...\]' you'll quickly notice that long lines don't wrap properly.
+# \e = ESC, \a = BEL
+# \u = username, \h = hostname, \w = CWD
+PS1="\[${BOLD}${GREEN}\]\u@${PS1_HOST}\[${RESET}\]:\[${BOLD}${BLUE}\]\w\[${RESET}\]\$ "
+
+case "$TERM" in
+xterm*|rxvt*)
+    # Set window title to string xyz - '\e]0;xyz\a' - http://tldp.org/HOWTO/Xterm-Title-3.html
+    PS1="\[\e]0;\u@${PS1_HOST}: \w\a\]$PS1"
+    ;;
+esac

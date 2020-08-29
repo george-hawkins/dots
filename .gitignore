@@ -1,0 +1,6 @@
+bak/
+.vim/.netrwhist
+.*.sw*
+.ssh/
+.gnupg/
+.pki/

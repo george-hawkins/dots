@@ -1,0 +1,30 @@
+source ~/.vimrc
+
+" When you use a shortcut for the first time that means something to both the
+" IDE and to vim you see a warning that it will now be handled by vim.
+" You can see all conflicting keys and the current handler (vim or IDE) under:
+"
+"   File / Settings / Other Settings / Vim Emulation
+"
+" So if you prefer the IDE behavior for a shortcut to the vim behavior you can
+" change it here.
+
+" There's no suspend in IdeaVim so <C-Z> is free. So you can use it to escape
+" out to the IDE meaning of a shortcut. E.g. <C-P> can keep its normal vim
+" meaning while <C-Z><C-P> can be mapped through to its IDE meaning.
+" If you want this example to work in normal mode use:
+"
+"   map <C-Z><C-P> :action ParameterInfo<CR>
+"
+" And for insert mode you need a little more:
+"
+"   imap <C-Z><C-P> <Esc>:action ParameterInfo<CR>a
+
+imap <C-Z><C-P> <Esc>:action ParameterInfo<CR>a
+map <C-Z><C-N> :action GotoClass<CR>
+
+" I seem to often press shift-escape rather than just escape when editing.
+" This shortcut causes the tools pane (to the left of the editor) to collapse.
+" It's only an issue in normal mode so it only really happens if you shift-escape twice, i.e. exit insert mode and press shift-escape again.
+" So disable this IDE behavior:
+map <S-Esc> <Nop>
