@@ -1,6 +1,30 @@
 Dots
 ====
 
+This repo contains my standard set of dot files for use on any system.
+
+Prerequisites
+-------------
+
+### Ubuntu
+
+Install Vim:
+
+    $ sudo apt install vim-gtk3
+
+There used to be various confusingly similar `vim` packages for Ubuntu - now `vim-gtk3` seems more clearly to be the right one to choose.
+
+### Mac
+
+The Mac setup depends on a number of brew formulae:
+
+    $ brew install bash-completion grep coreutils gnu-sed
+
+For MacVim, see [`mac-vim.md`](mac-vim.md).
+
+Installation
+------------
+
 To install:
 
     $ cd
@@ -11,24 +35,6 @@ To install:
 Any existing dot files, that are replaced by this process, are moved to `~/.dots/bak`.
 
 Open a new terminal session now or you'll get errors related to `VIM_TERMINAL_BG` (defined in `.bashrc`) when editing files.
-
-Linux
------
-
-Install Vim:
-
-    $ sudo apt install vim-gtk3
-
-There used to be various confusingly similar `vim` packages for Ubuntu - now `vim-gtk3` seems more clearly to be the right one to choose.
-
-Mac
----
-
-The Mac setup depends on a number of brew formulae:
-
-    $ brew install bash-completion grep coreutils gnu-sed
-
-For MacVim, see [`mac-vim.md`](mac-vim.md).
 
 Next steps
 ----------
@@ -71,9 +77,13 @@ Now, get tilde-backtick set up as per [`key-layout.md`](key-layout.md).
 Java etc.
 ---------
 
-Use `sdkman` to install Java etc. on both Linux and Mac. First install `sdkman` as per its [installation instructions](https://sdkman.io/install).
+Use `sdkman` to install Java etc. on both Linux and Mac. First install `sdkman` as per the [instructions](https://sdkman.io/install) for installing _without_ automatically modifying your rc files:
 
-Note that `sdkman` automatically modifies your `.bashrc`.
+    $ curl -s "https://get.sdkman.io?rcupdate=false" | bash
+
+Then add the `source` line that it specifies to your `.bashrc`.
+
+Note: originally, I let it just add this `source` line itself but, for whatever reason, it modifies `.bashrc` on Ubuntu and `.bash_profile` on Mac. Doing this on Mac knocks out the `install` script's decision to favor `.profile` over `.bash_profile` (and you'll notice that `.bashrc` no read when you open a new terminal session as the `.bash_profile` created by `sdkman` isn't set up to `source` it). See _Notes_ below for more.
 
 To install Java:
 
@@ -93,7 +103,9 @@ On Mac, install `pyenv` as per its [Homebrew instructions](https://github.com/py
 
 On Linux, install the prerequisites as per the [wiki entry](https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites) and then install using [`pyenv-installer`](https://github.com/pyenv/pyenv-installer#install).
 
-Remember to copy in the relevant entries that the installation process prompts you to include in your `~/.bashrc`.
+Remember to copy in the relevant entries that the installation process prompts you to include in your `~/.bashrc`. If you install `pyenv` with brew, you need to ask it what the relevant lines are:
+
+    $ pyenv init
 
 Find the latest known standard Python version:
 
@@ -113,8 +125,8 @@ To install Node (and `npm`), see my nvm related instructions [here](https://gith
 
 To install Ruby (and manage gems), see the `rbenv` [installation instructions](https://github.com/rbenv/rbenv#installation).
 
-`.gnupg`, `.pki` and `.netrc`
------------------------------
+.gnupg, .pki and .netrc
+-----------------------
 
 In addition to `.ssh`, there are various key related directories on Ubuntu:
 

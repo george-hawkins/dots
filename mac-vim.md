@@ -1,11 +1,18 @@
 MacVim
 ======
 
-To install the standard version of Vim simply do:
+To install MacVim and command-line Vim, just do:
+
+    $ brew cask install macvim
+
+This will install the MacVim and set up links for `vim` etc.
+
+Notes
+-----
+
+To install just the command-line version of Vim, simply do:
 
     $ brew install vim
-
-**TODO:** I'm assuming `brew cask install macvim` does not install the command-line version of Vim. Do the cask install first and double check.
 
 `brew install` can no longer install the `.app` style applications that Spotlight, i.e. command-space, knows about. There used to be a `brew` command called `linkapps` that tried to deal with this but it has been deprecated due to the difficulties involved.
 
@@ -17,7 +24,7 @@ Now you've got a number of options:
 
 Note: the MacVim project uses the term "SnapShot" for its releases, don't be put off by this. These "SnapShot" releases are valid stable releases and are what are tracked by the `brew install` formula.
 
-So why isn't the `cask install` the perfect solution? Unlike the basic `brew install`, the `cask install` works entirely off prebuilt binaries and these are not always up-to-date.  At the time of writing the [cask](https://formulae.brew.sh/cask/macvim) and the [formula](https://formulae.brew.sh/formula/macvim) are in sync (if you go to the linked-to entries, you can find the version by going to the "JSON API" link and then searching for `url` in the cask entry and `stable` in the formula entry.)
+So why isn't the `cask install` necessarily the perfect solution? Unlike the basic `brew install`, the `cask install` works entirely off prebuilt binaries and these _may_ not always up-to-date.  At the time of writing the [cask](https://formulae.brew.sh/cask/macvim) and the [formula](https://formulae.brew.sh/formula/macvim) are in sync (if you go to the linked-to entries, you can find the version by going to the "JSON API" link and then searching for `url` in the cask entry and `stable` in the formula entry.)
 
 If the `cask` is up-to-date when reading this, then it seems the best option to go with, the MacVim project download being the fallback.
 
