@@ -1,30 +1,9 @@
-Xmodmap
--------
+Xkb
+===
 
-`/etc/gdm3/Xsession` calls `xmodmap` on your `~/.Xmodmap` - this definitely still works, however Gnome then stomps all over whatever is configured.
+There used to be various different ways to set up your key layout. They've all been killed off gradually (see previous revisions of this file for more details). Xkb now seems to be the only way to go. Oddly, it doesn't seem clear that there's anyway to use it with per-user only settings, you have to make system-wide visible changes.
 
-It seems nowadays the only way to resolve this is via `hwdb`.
-
-See my question [here](https://unix.stackexchange.com/q/473415/111626), the `hwdb` [man page](http://manpages.ubuntu.com/manpages/bionic/en/man7/hwdb.7.html), and this [tutorial page](https://yulistic.gitlab.io/2017/12/linux-keymapping-with-udev-hwdb/).
-
-Note: on Ubuntu the `hwdb` DB files are found in `/lib/udev/hwdb.d/` but there's also an empty `/etc/udev/hwdb.d` directory.
-
-At the moment I just have `xmm` aliased to call `xmodmap` on `~/.Xmodmap` but calling this once Gnome is started is too late for it to affect e.g. tabbing between windows within an application.
-
-Xmodmap update
---------------
-
-Xmodmap seems to be dead in Gnome - see <https://bugzilla.gnome.org/show_bug.cgi?id=721873> for their arrogant take on this - "we didn't force you to use our UIs".
-
-Xkb seems to be the only way to go - bizarrely it doesn't seem clear that there's anyway to really use it with per-user only settings.
-
-After trying various things covered here:
-
-* <https://askubuntu.com/a/846184>
-* <https://wiki.archlinux.org/index.php/X_keyboard_extension>
-* <https://medium.com/@damko/a-simple-humble-but-comprehensive-guide-to-xkb-for-linux-6f1ad5e13450>
-
-The eventual answer was to work thru this [AskUbuntu answer](https://askubuntu.com/a/483026) like so:
+After trying various things, this is the approach I came up with (largely based off this AskUbuntu [answer](https://askubuntu.com/a/483026)):
 
     $ sudo cp /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.orig
     $ sudo vim /usr/share/X11/xkb/symbols/us
@@ -58,14 +37,12 @@ Then reload the xkb data:
 
     $ sudo dpkg-reconfigure xkb-data
 
-The go to Settings / Region & Language, hit plus and click "English (United States)" - you then see all the variants, including the one added above. Select it and click add and then move it to the top of the input source.
+The go to _Settings / Region & Language_, click the plus and then _English (United States)_ - you then see all the variants, including the one added above. Select it and click _Add_ and then move it to the top of the _Input Sources_.
 
-I then had to reload Gnome shell as per this [AskUbuntu answer](https://askubuntu.com/a/814336):
+Neither the new input source nor the keyboard dropdown become visible until you logout and re-login. Or reload the Gnome shell as per this AskUbuntu [answer](https://askubuntu.com/a/814336):
 
     $ killall -3 gnome-shell
 
-The new input source then became available under the keyboard dropdown (top right). You can also see it as a valid source like so:
+The new input source then becomes available under the keyboard dropdown (top right).
 
-    $ gsettings get org.gnome.desktop.input-sources sources
-
-This did cause both the key below the escape and the one beside the left-shift to generate grave and asciitilde - but the window manager still only switched between windows (of the same application) when using the key below escape. But perhaps this just needs a restart.
+For whatever reason, the window manager still only recognizes the tilde below the escape for switching between windows of the same application. In all other situations, everything works as expected.
