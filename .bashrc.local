@@ -1,7 +1,0 @@
-# For platform integration tests.
-# Linux - default_if=$(route | sed -n 's/^default .* \(.*\)/\1/p')
-# Linux - export MACHINE_IP=$(ip -4 address show dev $default_if | sed -n 's/^ *inet \([^/]*\).*/\1/p')
-export MACHINE_IP=$(ipconfig getifaddr en0)
-
-# You edited /lib/systemd/system/docker.service to make the Docker daemon visible to your Windows VM.
-#export DOCKER_HOST='tcp://localhost:2375'

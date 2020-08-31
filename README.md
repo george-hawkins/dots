@@ -36,6 +36,10 @@ Any existing dot files, that are replaced by this process, are moved to `~/.dots
 
 Open a new terminal session now or you'll get errors related to `VIM_TERMINAL_BG` (defined in `.bashrc`) when editing files.
 
+If you're on a work machine and have `~/.ssh-personal` you can set `git` to use this like so:
+
+    $ export GIT_SSH_COMMAND="ssh -i $HOME/.ssh-personal/id_rsa -o IdentitiesOnly=yes"
+
 Next steps
 ----------
 
@@ -44,7 +48,7 @@ Next steps
 
 Add any system specific settings into `.bashrc` (or copy them from an existing similar system, e.g. your previous work machine).
 
-**TODO:** remove `.bashrc.local` once you've got your work systems set up.
+**Note:** if you ever start using your Linux work desktop again then make sure to copy over the `MACHINE_IP` entry from your work Mac `~/.bashrc`.
 
 Ssh
 ---
@@ -81,7 +85,7 @@ Use `sdkman` to install Java etc. on both Linux and Mac. First install `sdkman` 
 
     $ curl -s "https://get.sdkman.io?rcupdate=false" | bash
 
-Then add the `source` line that it specifies to your `.bashrc`.
+Then add the `source` line that it specifies to _the end_ of your `.bashrc`.
 
 Note: originally, I let it just add this `source` line itself but, for whatever reason, it modifies `.bashrc` on Ubuntu and `.bash_profile` on Mac. Doing this on Mac knocks out the `install` script's decision to favor `.profile` over `.bash_profile` (and you'll notice that `.bashrc` no read when you open a new terminal session as the `.bash_profile` created by `sdkman` isn't set up to `source` it). See _Notes_ below for more.
 
