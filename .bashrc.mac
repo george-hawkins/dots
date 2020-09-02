@@ -15,5 +15,5 @@ done
 # Replace the section/degree key with tilde/backtick.
 # https://apple.stackexchange.com/a/353941
 # Note: the $'...' is a bash string literal - see https://unix.stackexchange.com/a/30904
-alias tidle-switch=$'hidutil property --set \'{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064}]}\''
+alias tilde-switch=$'hidutil property --set \'{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064}]}\''
 
