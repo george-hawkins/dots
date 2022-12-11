@@ -1,6 +1,2 @@
 # Setup programmable completion.
 source /usr/share/bash-completion/bash_completion
-
-# Make </> key tilde/backtick.
-alias tilde-switch='echo "try setxkbmap -layout us_grave_asciitilde"'
-
