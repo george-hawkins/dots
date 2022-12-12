@@ -1,6 +1,6 @@
 source ~/.bashrc.ostype
 
-# Favor brew installed versions of tools (particularly relevent for brew).
+# Favor local versions of tools.
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 PATH=$HOME/bin:$PATH
@@ -40,10 +40,6 @@ fi
 [ -x "$(command -v lesspipe)" ] && eval "$(lesspipe)"
 
 # Disable tab-completion expansion of `~` to home path.
-# Oddly (without this)  `~` expands for some commands, e.g. `unzip`, but not for others, e.g. `ls`.
+# Oddly (without this) `~` expands for some commands, e.g. `unzip`, but not for others, e.g. `ls`.
 # This just replaces the same named function found in `.../bash_completion`.
 _expand() { true; }
-
-# ----------------------------------------------------------------------
-# Lines below this point were added by tools like sdkman etc.
-# ----------------------------------------------------------------------
