@@ -21,8 +21,8 @@ export BC_ENV_ARGS=$HOME/.bcrc
 export HISTCONTROL=ignoredups
 
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
 
 # `-v` stops dot files being sorted in among other files.
 alias ls='ls --color=auto -vF'
