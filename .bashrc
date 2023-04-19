@@ -29,6 +29,12 @@ alias ls='ls --color=auto -vF'
 alias l='ls -Flash'
 alias h='history'
 
+# https://stackoverflow.com/a/46432233 - turn output warning into an error.
+vim() {
+  [ -t 1 ] || { echo "Vim: Error: Output is not to a terminal" >&2; return 1; }
+  command vim "$@"
+}
+
 if [[ $- == *i* && -f ~/.bashrc_prompt ]]
 then
     source ~/.bashrc_prompt
