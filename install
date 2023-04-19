@@ -23,7 +23,7 @@ replace .bcrc
 replace .ghci
 replace .gitconfig
 replace .ideavimrc
-replace .profile
+replace .bash_profile
 replace .vim
 replace .vimrc
 
