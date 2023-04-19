@@ -142,3 +142,5 @@ Notes
 -----
 
 The `install` script removes any existing `.bash_profile` file. There's no point having `.profile` and `.bash_profile` and, after a little research, I'm favoring `.profile` for fairly arbitrary reasons.
+
+**Update:** Anaconda adds a snippet to `.bash_profile` (if it doesn't exist then it's created) and once `.bash_profile` exists `.profile` is ignored. So, it's probably better to switch to `.bash_profile` from the get-go.
